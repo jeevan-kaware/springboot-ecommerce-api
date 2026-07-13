@@ -161,14 +161,11 @@ Run application:
 Application runs on: http://localhost:8080
 
 
----
+## 📖 API Documentation
 
-# 📖 API Documentation
-
-Swagger UI: http://localhost:8080/swagger-ui/index.html
-
-
----
+```text
+http://localhost:8080/swagger-ui/index.html
+```
 
 # 📸 Screenshots
 
@@ -232,5 +229,4 @@ Swagger UI: http://localhost:8080/swagger-ui/index.html
 
 Java Backend Developer
 
-GitHub:
-https://github.com/jeevan-kaware
+GitHub: **https://github.com/jeevan-kaware**
