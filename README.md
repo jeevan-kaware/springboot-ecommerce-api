@@ -110,11 +110,10 @@ This project provides secure APIs for users, products, categories, cart manageme
 - Postman
 
 
----
+## 📂 Project Structure
 
-# 📂 Project Structure
+```text
 src/main/java/com/jeevan/ecommerce
-
 ├── controller
 ├── service
 ├── repository
@@ -123,20 +122,20 @@ src/main/java/com/jeevan/ecommerce
 ├── security
 ├── config
 ├── enums
-└── exception
-
-
----
+├── exception
+└── EcommerceApplication.java
+```
 
 # 🔐 Environment Configuration
 
 Create a `.env` file in the project root.
 
-Example:
+```properties
 DB_URL=your_database_url
 DB_USERNAME=your_username
 DB_PASSWORD=your_password
 OPENAI_API_KEY=your_api_key
+```
 
 Note:
 Environment variables are not committed to GitHub for security reasons.
@@ -145,12 +144,20 @@ Environment variables are not committed to GitHub for security reasons.
 
 # ▶️ Run Project
 
-Clone repository: git clone https://github.com/jeevan-kaware/springboot-ecommerce-api.git
+Clone repository:
+```bash
+git clone https://github.com/jeevan-kaware/springboot-ecommerce-api.git
+```
 
-Navigate: cd springboot-ecommerce-api
+Navigate: 
+```bash
+cd springboot-ecommerce-api
+```
 
-Run application: ./mvnw spring-boot:run
-
+Run application:
+```bash
+./mvnw spring-boot:run
+```
 Application runs on: http://localhost:8080
 
 
