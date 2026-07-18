@@ -1,4 +1,4 @@
-package com.jeevan.ecommerce.controller;
+package com.jeevan.ecommerce.controller.admin;
 
 import com.jeevan.ecommerce.dto.request.CategoryRequest;
 import com.jeevan.ecommerce.dto.response.CategoryResponse;

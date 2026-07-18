@@ -1,7 +1,6 @@
-package com.jeevan.ecommerce.security;
+package com.jeevan.ecommerce.security.jwt;
 
-import com.jeevan.ecommerce.security.jwt.JwtService;
-import com.jeevan.ecommerce.security.service.CustomUserDetailsService;
+import com.jeevan.ecommerce.security.userdetails.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

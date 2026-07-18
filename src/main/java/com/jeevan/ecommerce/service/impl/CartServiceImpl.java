@@ -51,8 +51,7 @@ public class CartServiceImpl implements CartService {
 
         if(product.getStock() < request.getQuantity()){
 
-            throw new RuntimeException(
-                    "Insufficient stock");
+            throw new IllegalArgumentException("Insufficient stock");
 
         }
 
@@ -89,7 +88,7 @@ public class CartServiceImpl implements CartService {
                             + request.getQuantity();
 
             if (newQuantity > product.getStock()) {
-                throw new RuntimeException("Insufficient stock");
+                throw new IllegalArgumentException("Insufficient stock");
             }
 
             cartItem.setQuantity(newQuantity);
@@ -216,7 +215,7 @@ public class CartServiceImpl implements CartService {
                     "You cannot update another user's cart");
         }
         if(quantity <= 0){
-            throw new RuntimeException(
+            throw new IllegalArgumentException(
                     "Quantity must be greater than zero"
             );
         }
@@ -225,7 +224,7 @@ public class CartServiceImpl implements CartService {
         Product product = item.getProduct();
 
         if(quantity > product.getStock()){
-            throw new RuntimeException("Insufficient stock");
+            throw new IllegalArgumentException("Insufficient stock");
         }
 
         item.setQuantity(quantity);

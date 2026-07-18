@@ -1,9 +1,10 @@
-package com.jeevan.ecommerce.controller;
+package com.jeevan.ecommerce.controller.user;
 
 
 import com.jeevan.ecommerce.dto.request.UpdateProfileRequest;
 import com.jeevan.ecommerce.dto.response.UserProfileResponse;
 import com.jeevan.ecommerce.service.UserProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class UserProfileController {
 
             Authentication authentication,
 
-            @RequestBody UpdateProfileRequest request
+            @Valid @RequestBody UpdateProfileRequest request
 
     ){
 

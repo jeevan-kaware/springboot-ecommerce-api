@@ -1,6 +1,6 @@
-package com.jeevan.ecommerce.security.config;
+package com.jeevan.ecommerce.config;
 
-import com.jeevan.ecommerce.security.JwtFilter;
+import com.jeevan.ecommerce.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

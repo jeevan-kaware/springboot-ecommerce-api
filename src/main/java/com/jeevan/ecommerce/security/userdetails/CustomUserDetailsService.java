@@ -1,8 +1,7 @@
-package com.jeevan.ecommerce.security.service;
+package com.jeevan.ecommerce.security.userdetails;
 
 import com.jeevan.ecommerce.entity.User;
 import com.jeevan.ecommerce.repository.UserRepository;
-import com.jeevan.ecommerce.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;

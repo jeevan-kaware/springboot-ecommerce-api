@@ -17,11 +17,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-<<<<<<< HEAD
-    @Value("${SPRING_SECURITY_USERNAME}")
-=======
+
     @Value("${JWT_SECRET}")
->>>>>>> 06cb172 (Complete E-Commerce API with AI Assistant, Cloudinary, Wishlist, Cart, Orders, Profile and Security improvements)
     private String SECRET_KEY;
 
     public String generateToken(String email) {

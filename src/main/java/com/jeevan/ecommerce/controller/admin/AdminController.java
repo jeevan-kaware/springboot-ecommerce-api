@@ -1,13 +1,10 @@
-package com.jeevan.ecommerce.controller;
+package com.jeevan.ecommerce.controller.admin;
 
-import com.jeevan.ecommerce.dto.request.ChangePasswordRequest;
 import com.jeevan.ecommerce.dto.response.OrderResponse;
 import com.jeevan.ecommerce.dto.response.UserProfileResponse;
-import com.jeevan.ecommerce.entity.User;
 import com.jeevan.ecommerce.enums.OrderStatus;
 import com.jeevan.ecommerce.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

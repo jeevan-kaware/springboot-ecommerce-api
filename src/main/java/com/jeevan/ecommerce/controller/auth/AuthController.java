@@ -1,4 +1,4 @@
-package com.jeevan.ecommerce.controller;
+package com.jeevan.ecommerce.controller.auth;
 
 import com.jeevan.ecommerce.dto.request.ChangePasswordRequest;
 import com.jeevan.ecommerce.dto.request.LoginRequest;
@@ -52,7 +52,7 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public AuthResponse refreshToken(
-            @RequestBody RefreshTokenRequest request
+            @Valid  @RequestBody RefreshTokenRequest request
     ){
 
         RefreshToken refreshToken =

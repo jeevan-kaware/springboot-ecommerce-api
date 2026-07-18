@@ -1,6 +1,7 @@
 package com.jeevan.ecommerce.service;
 
 import com.jeevan.ecommerce.entity.RefreshToken;
+import com.jeevan.ecommerce.exception.ResourceNotFoundException;
 import com.jeevan.ecommerce.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,13 +43,13 @@ public class RefreshTokenService {
 
         RefreshToken refreshToken = repository.findByToken(token)
                 .orElseThrow(() ->
-                        new RuntimeException("Refresh Token Not Found"));
+                        new ResourceNotFoundException("Refresh Token Not Found"));
 
         if (!isValid(refreshToken)) {
 
             repository.delete(refreshToken);
 
-            throw new RuntimeException("Refresh Token Expired");
+            throw new ResourceNotFoundException("Refresh Token Expired");
         }
 
         return refreshToken;

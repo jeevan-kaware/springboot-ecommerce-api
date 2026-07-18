@@ -1,4 +1,4 @@
-package com.jeevan.ecommerce.security;
+package com.jeevan.ecommerce.security.userdetails;
 
 import com.jeevan.ecommerce.entity.User;
 import org.springframework.security.core.GrantedAuthority;

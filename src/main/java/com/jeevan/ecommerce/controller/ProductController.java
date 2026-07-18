@@ -1,13 +1,11 @@
 package com.jeevan.ecommerce.controller;
 
-import com.jeevan.ecommerce.dto.request.ProductRequest;
 import com.jeevan.ecommerce.dto.response.ProductResponse;
 import com.jeevan.ecommerce.service.ProductService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.List;
 

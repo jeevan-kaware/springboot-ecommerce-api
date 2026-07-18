@@ -1,4 +1,4 @@
-package com.jeevan.ecommerce.controller;
+package com.jeevan.ecommerce.controller.user;
 
 
 import com.jeevan.ecommerce.dto.request.AddToCartRequest;
