@@ -4,6 +4,8 @@ import com.jeevan.ecommerce.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -33,4 +35,11 @@ public class User {
     @OneToOne(mappedBy = "user",
             cascade = CascadeType.ALL)
     private Cart cart;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Wishlist> wishlists;
 }

@@ -7,6 +7,7 @@ import com.jeevan.ecommerce.entity.Category;
 import com.jeevan.ecommerce.entity.Product;
 import com.jeevan.ecommerce.repository.CategoryRepository;
 import com.jeevan.ecommerce.repository.ProductRepository;
+import com.jeevan.ecommerce.service.CloudinaryService;
 import com.jeevan.ecommerce.service.ProductService;
 import com.jeevan.ecommerce.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-
+    private final CloudinaryService cloudinaryService;
     private final ProductRepository productRepository;
 
     private final CategoryRepository categoryRepository;
@@ -56,8 +58,6 @@ public class ProductServiceImpl implements ProductService {
 
                 .brand(request.getBrand())
 
-                .imageUrl(request.getImageUrl())
-
                 .category(category)
 
                 .active(true)
@@ -77,26 +77,13 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductResponse> getAllProducts() {
-
-
-        return productRepository.findAll()
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
-
-    }
-
-
-
-    @Override
     public ProductResponse getProductById(Long id) {
 
 
         Product product =
-                productRepository.findById(id)
+                productRepository.findByIdAndActiveTrue(id)
                         .orElseThrow(() ->
-                                new ResourceNotFoundException("Category not found"));
+                                new ResourceNotFoundException("product not found"));
 
 
         return mapToResponse(product);
@@ -111,31 +98,13 @@ public class ProductServiceImpl implements ProductService {
             Long categoryId) {
 
 
-        return productRepository
-                .findByCategoryId(categoryId)
+        return
+        productRepository.findByCategoryIdAndActiveTrue(categoryId)
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
 
     }
-
-
-
-
-    @Override
-    public List<ProductResponse> searchProduct(
-            String keyword) {
-
-
-        return productRepository
-                .findByNameContainingIgnoreCase(keyword)
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
-
-    }
-
-
 
 
     @Override
@@ -156,7 +125,7 @@ public class ProductServiceImpl implements ProductService {
                                 request.getCategoryId()
                         )
                         .orElseThrow(() ->
-                                new ResourceNotFoundException("Product not found"));
+                                new ResourceNotFoundException("Category not found"));
 
 
         product.setName(request.getName());
@@ -172,9 +141,6 @@ public class ProductServiceImpl implements ProductService {
 
         product.setBrand(
                 request.getBrand());
-
-        product.setImageUrl(
-                request.getImageUrl());
 
         product.setCategory(category);
 
@@ -195,21 +161,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public String deleteProduct(Long id) {
 
-
         Product product =
                 productRepository.findById(id)
                         .orElseThrow(() ->
                                 new ResourceNotFoundException("Product not found"));
 
+        product.setActive(false);
 
-        productRepository.delete(product);
+        productRepository.save(product);
 
-
-        return "Product deleted successfully";
-
+        return "Product deactivated successfully";
     }
-
-
 
 
 
@@ -246,7 +208,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductResponse> searchProducts(String keyword) {
 
-        return productRepository.findByNameContainingIgnoreCase(keyword)
+        return productRepository.findByNameContainingIgnoreCaseAndActiveTrue(keyword)
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
@@ -266,8 +228,26 @@ public class ProductServiceImpl implements ProductService {
                         Sort.by(sortBy)
                 );
 
-        return productRepository.findAll(pageable)
+        return productRepository.findByActiveTrue(pageable)
                 .map(this::mapToResponse);
 
     }
+    @Override
+    public ProductResponse uploadProductImage(
+            Long productId,
+            MultipartFile file) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Product not found"));
+
+        String imageUrl = cloudinaryService.uploadFile(file);
+
+        product.setImageUrl(imageUrl);
+
+        Product updatedProduct = productRepository.save(product);
+
+        return mapToResponse(updatedProduct);
+    }
+
 }

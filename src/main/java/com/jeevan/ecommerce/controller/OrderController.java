@@ -39,10 +39,14 @@ public class OrderController {
 
     @GetMapping("/{orderId}")
     public OrderResponse getOrder(
+            Authentication authentication,
             @PathVariable Long orderId
-    ) {
+    ){
 
-        return orderService.getOrderById(orderId);
+        return orderService.getOrderById(
+                authentication.getName(),
+                orderId
+        );
     }
 
 }

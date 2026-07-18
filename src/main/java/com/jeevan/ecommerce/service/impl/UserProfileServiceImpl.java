@@ -17,7 +17,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private final UserRepository userRepository;
 
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserProfileResponse getProfile(String email) {
@@ -43,31 +42,6 @@ public class UserProfileServiceImpl implements UserProfileService {
         User updatedUser = userRepository.save(user);
 
         return mapToResponse(updatedUser);
-    }
-
-    @Override
-    public String changePassword(
-            String email,
-            ChangePasswordRequest request) {
-
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found"));
-
-        if (!passwordEncoder.matches(
-                request.getOldPassword(),
-                user.getPassword())) {
-
-            throw new RuntimeException("Old password is incorrect");
-        }
-
-        user.setPassword(
-                passwordEncoder.encode(
-                        request.getNewPassword()));
-
-        userRepository.save(user);
-
-        return "Password changed successfully";
     }
 
     private UserProfileResponse mapToResponse(User user) {

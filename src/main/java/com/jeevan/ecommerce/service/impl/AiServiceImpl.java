@@ -1,9 +1,19 @@
 package com.jeevan.ecommerce.service.impl;
 
+
+import com.jeevan.ecommerce.entity.Product;
+import com.jeevan.ecommerce.exception.AiServiceException;
+import com.jeevan.ecommerce.repository.ProductRepository;
 import com.jeevan.ecommerce.service.AiService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
+
+
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -13,125 +23,198 @@ public class AiServiceImpl implements AiService {
     private final ChatClient chatClient;
 
 
+    private final ProductRepository productRepository;
+
+
+
     @Override
     public String askQuestion(String question) {
 
 
+
+        List<Product> products =
+                productRepository.findAllByActiveTrue();
+
+        if (products.isEmpty()) {
+            return """
+            No products are currently available in our store.
+
+            Please ask the administrator to add products first.
+            """;
+        }
+
+        StringBuilder productContext =
+                new StringBuilder();
+
+
+
+        productContext.append("""
+                
+                Available Products From Store Database:
+                
+                """);
+
+
+
+        for(Product product : products){
+
+
+            productContext.append("""
+                    
+                    Product Name : %s
+                    Category : %s
+                    Brand : %s
+                    Price : %s
+                    Stock : %s
+                    
+                    -------------------------
+                    
+                    """
+                    .formatted(
+                            product.getName(),
+
+                            product.getCategory()
+                                    .getName(),
+
+                            product.getBrand(),
+
+                            product.getPrice(),
+
+                            product.getStock()
+                    ));
+
+        }
+
+
+
+
         String systemPrompt = """
-                
-                You are an advanced AI Shopping Assistant for an E-Commerce application.
-                
-                Your purpose:
-                Help users make smart buying decisions like ChatGPT/Gemini.
-                
-                You can answer:
-                - Product recommendations
-                - Product comparisons
-                - Laptop/mobile/electronics suggestions
-                - Budget recommendations
-                - Product features explanation
-                - Pros and Cons
-                - Alternatives
-                - Buying guides
-                - Shopping advice
-                - Warranty and maintenance queries
-                
-                
-                IMPORTANT RESPONSE RULES:
-                
-                1. Never greet the user by name.
-                2. Never introduce yourself unless user asks.
-                3. Answer directly to the question.
-                4. Behave like a professional AI assistant.
-                5. Give accurate and practical information.
-                6. Do not create fake products or specifications.
-                7. If information is uncertain, mention it clearly.
-                
-                
-                FORMATTING RULES:
-                
-                - Use clean Markdown formatting.
-                - Keep answers concise and easy to read.
-                - Avoid very long paragraphs.
-                - Use short sections with proper spacing.
-                - Use bullet points instead of large text blocks.
-                - Use tables only when comparison is required.
-                - Do not create extremely large tables.
-                - Keep tables maximum 4-5 rows.
-                - Highlight important points using bold text.
-                - Do not repeat the same information multiple times.
-                
-                
-                FOR PRODUCT RECOMMENDATIONS:
-                
-                Use this structure:
-                
-                
-                ## Recommended Products
-                
-                | Product | Price | Key Features |
-                |---------|-------|--------------|
-                | Product Name | Approx Price | Main Features |
-                
-                
-                ## Why Consider These?
-                
-                - Advantage 1
-                - Advantage 2
-                - Advantage 3
-                
-                
-                ## Things To Consider
-                
-                - Limitation 1
-                - Limitation 2
-                
-                
-                ## Final Recommendation
-                
-                Give a short recommendation:
-                - Best overall choice
-                - Best value option
-                - Who should buy it
-                
-                
-                FOR PRODUCT COMPARISON:
-                
-                Use:
-                
-                ## Comparison
-                
-                | Feature | Product A | Product B |
-                |---------|-----------|-----------|
-                
-                Then provide:
-                
-                ## Winner
-                
-                Explain briefly why.
-                
-                
-                FOR TECHNICAL QUESTIONS:
-                
-                - Explain step by step.
-                - Use code blocks if required.
-                - Keep explanation simple.
-                
-                
-                FINAL RULE:
-                
-                Always generate responses that look clean, professional,
-                and similar to ChatGPT/Gemini.
-                The answer should be informative but not unnecessarily long.
-                """;
+
+                You are an AI Shopping Assistant
+                for an E-Commerce application.
 
 
-        return chatClient
-                .prompt()
-                .system(systemPrompt)
-                .user(question)
-                .call()
-                .content();
+                IMPORTANT RULES:
+
+
+                1. Recommend ONLY products provided
+                   in the database context.
+
+
+                2. Never create fake products.
+
+
+                3. Never recommend outside products.
+
+
+                4. If suitable product is not available,
+                   say:
+                   
+                   "No suitable product is currently
+                   available in our store."
+
+
+                
+                RESPONSE FORMAT:
+
+
+                Do not write one big paragraph.
+
+
+                Always use:
+
+
+                ## Product Name
+
+                Price:
+
+                Category:
+
+                Why Recommended:
+
+                • Point 1
+                • Point 2
+                • Point 3
+
+
+
+                For multiple products:
+
+
+                🥇 Best Choice
+
+                🥈 Second Choice
+
+                🥉 Third Choice
+
+
+
+                For comparison:
+
+
+                Use small markdown table.
+
+
+                Include:
+
+                Feature
+                Product A
+                Product B
+
+
+
+                Keep response:
+
+                - Short
+                - Clean
+                - Professional
+                - Easy to read
+
+
+                Maximum 250 words.
+
+
+
+                DATABASE PRODUCTS:
+
+
+                %s
+
+
+                User Question:
+
+
+                %s
+
+
+                Answer according to database only.
+
+                """
+                .formatted(
+                        productContext,
+                        question
+                );
+
+
+
+
+        try {
+
+            return chatClient
+                    .prompt()
+                    .system(systemPrompt)
+                    .user(question)
+                    .call()
+                    .content();
+
+        } catch (Exception ex) {
+
+            throw new AiServiceException(
+                    "AI service is temporarily unavailable. Please try again later."
+            );
+
+        }
 
     }
+
 }

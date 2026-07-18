@@ -45,4 +45,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<CartItem> cartItems;
 
+    @OneToMany(mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Wishlist> wishlists;
 }

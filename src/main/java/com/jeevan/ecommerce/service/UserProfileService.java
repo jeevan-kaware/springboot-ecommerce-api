@@ -13,9 +13,4 @@ public interface UserProfileService {
             UpdateProfileRequest request
     );
 
-    String changePassword(
-            String email,
-            ChangePasswordRequest request
-    );
-
 }

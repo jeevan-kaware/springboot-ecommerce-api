@@ -82,14 +82,18 @@ public class CartServiceImpl implements CartService {
 
 
 
-        if(cartItem != null){
+        if (cartItem != null) {
 
-
-            cartItem.setQuantity(
+            int newQuantity =
                     cartItem.getQuantity()
-                            +
-                            request.getQuantity()
-            );
+                            + request.getQuantity();
+
+            if (newQuantity > product.getStock()) {
+                throw new RuntimeException("Insufficient stock");
+            }
+
+            cartItem.setQuantity(newQuantity);
+
 
 
         }else{
@@ -107,7 +111,9 @@ public class CartServiceImpl implements CartService {
 
         cartItemRepository.save(cartItem);
 
-        cart.getCartItems().add(cartItem);
+        if(!cart.getCartItems().contains(cartItem)){
+            cart.getCartItems().add(cartItem);
+        }
 
         return buildCartResponse(cart);
 
@@ -132,6 +138,7 @@ public class CartServiceImpl implements CartService {
             items.add(
 
                     CartItemResponse.builder()
+                            .cartItemId(item.getId())
                             .productId(item.getProduct().getId())
                             .productName(item.getProduct().getName())
                             .quantity(item.getQuantity())
@@ -164,23 +171,39 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public String removeItem(Long cartItemId) {
+    public String removeItem( String email,Long cartItemId) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+
+        Cart cart = cartRepository.findByUserId(user.getId())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Cart not found"));
 
         CartItem item = cartItemRepository.findById(cartItemId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Cart Item not found"));
-
-        Cart cart = item.getCart();
+        if(!item.getCart().getId().equals(cart.getId())){
+            throw new RuntimeException(
+                    "You cannot remove another user's cart item");
+        }
 
         cart.getCartItems().remove(item);
-
+        cartRepository.save(cart);
         cartItemRepository.delete(item);
 
         return "Item removed successfully";
     }
     @Override
-    public CartResponse updateQuantity(Long cartItemId, Integer quantity) {
+    public CartResponse updateQuantity( String email, Long cartItemId, Integer quantity) {
 
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+
+        Cart cart = cartRepository.findByUserId(user.getId())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Cart not found"));
 
         CartItem item = cartItemRepository.findById(cartItemId)
                 .orElseThrow(() ->
@@ -188,13 +211,22 @@ public class CartServiceImpl implements CartService {
                                 "Cart item not found"
                         ));
 
-
+        if(!item.getCart().getId().equals(cart.getId())){
+            throw new RuntimeException(
+                    "You cannot update another user's cart");
+        }
         if(quantity <= 0){
             throw new RuntimeException(
                     "Quantity must be greater than zero"
             );
         }
 
+
+        Product product = item.getProduct();
+
+        if(quantity > product.getStock()){
+            throw new RuntimeException("Insufficient stock");
+        }
 
         item.setQuantity(quantity);
 
@@ -214,6 +246,8 @@ public class CartServiceImpl implements CartService {
         Cart cart = cartRepository.findByUserId(user.getId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Cart not found"));
+
+        cartItemRepository.deleteAll(cart.getCartItems());
 
         cart.getCartItems().clear();
 

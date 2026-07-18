@@ -56,22 +56,36 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+                        // PUBLIC
                         .requestMatchers(
                                 "/api/auth/**",
+                                "/api/products/**",
+                                "/api/categories/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html"
-
                         ).permitAll()
 
+                        // ADMIN
                         .requestMatchers("/api/admin/**")
                         .hasRole("ADMIN")
 
-                        .requestMatchers("/api/user/**")
-                        .hasAnyRole("USER","ADMIN")
+                        // USER
+                        .requestMatchers(
+                                "/api/cart/**",
+                                "/api/orders/**",
+                                "/api/user/profile",
+                                "/api/user/wishlist/**"
+                        )
+                        .hasRole("USER")
+
+                        // USER + ADMIN
+                        .requestMatchers("/api/user/ai/**")
+                        .hasAnyRole("USER", "ADMIN")
 
                         .anyRequest()
-                        .authenticated())
+                        .authenticated()
+                )
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(

@@ -19,7 +19,7 @@ public class CartController {
     private final CartService cartService;
 
 
-    // Add product to cart
+
     @PostMapping("/add")
     public CartResponse addToCart(
             Authentication authentication,
@@ -34,7 +34,7 @@ public class CartController {
 
 
 
-    // Get logged in user cart
+
     @GetMapping
     public CartResponse getCart(
             Authentication authentication
@@ -47,33 +47,49 @@ public class CartController {
 
 
 
-    // Update quantity
+
     @PutMapping("/update/{cartItemId}")
     public CartResponse updateQuantity(
+
+            Authentication authentication,
+
             @PathVariable Long cartItemId,
+
             @RequestParam Integer quantity
     ){
 
         return cartService.updateQuantity(
+
+                authentication.getName(),
+
                 cartItemId,
+
                 quantity
         );
     }
 
 
 
-    // Remove single item
+
     @DeleteMapping("/remove/{cartItemId}")
     public String removeItem(
+
+            Authentication authentication,
+
             @PathVariable Long cartItemId
     ){
 
-        return cartService.removeItem(cartItemId);
+        return cartService.removeItem(
+
+                authentication.getName(),
+
+                cartItemId
+        );
     }
 
 
 
-    // Clear complete cart
+
     @DeleteMapping("/clear")
     public String clearCart(
             Authentication authentication

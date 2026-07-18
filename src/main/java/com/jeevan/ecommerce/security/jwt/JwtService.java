@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +17,11 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
+<<<<<<< HEAD
     @Value("${SPRING_SECURITY_USERNAME}")
+=======
+    @Value("${JWT_SECRET}")
+>>>>>>> 06cb172 (Complete E-Commerce API with AI Assistant, Cloudinary, Wishlist, Cart, Orders, Profile and Security improvements)
     private String SECRET_KEY;
 
     public String generateToken(String email) {

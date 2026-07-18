@@ -17,18 +17,6 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-
-    // ADMIN
-    @PostMapping("/admin/categories")
-    @PreAuthorize("hasRole('ADMIN')")
-    public CategoryResponse createCategory(
-            @Valid @RequestBody CategoryRequest request) {
-
-        return categoryService.createCategory(request);
-    }
-
-
-    // USER + ADMIN
     @GetMapping("/categories")
     public List<CategoryResponse> getAllCategories() {
 
@@ -36,33 +24,11 @@ public class CategoryController {
     }
 
 
-    // USER + ADMIN
     @GetMapping("/categories/{id}")
     public CategoryResponse getCategoryById(
             @PathVariable Long id) {
 
         return categoryService.getCategoryById(id);
-    }
-
-
-    // ADMIN
-    @PutMapping("/admin/categories/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public CategoryResponse updateCategory(
-            @PathVariable Long id,
-            @Valid @RequestBody CategoryRequest request) {
-
-        return categoryService.updateCategory(id, request);
-    }
-
-
-    // ADMIN
-    @DeleteMapping("/admin/categories/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String deleteCategory(
-            @PathVariable Long id) {
-
-        return categoryService.deleteCategory(id);
     }
 
 }

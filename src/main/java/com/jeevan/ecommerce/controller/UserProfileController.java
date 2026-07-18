@@ -1,25 +1,51 @@
 package com.jeevan.ecommerce.controller;
 
-import com.jeevan.ecommerce.entity.User;
-import com.jeevan.ecommerce.repository.UserRepository;
+
+import com.jeevan.ecommerce.dto.request.UpdateProfileRequest;
+import com.jeevan.ecommerce.dto.response.UserProfileResponse;
+import com.jeevan.ecommerce.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserProfileController {
 
-    private final UserRepository userRepository;
+
+    private final UserProfileService userProfileService;
+
+
 
     @GetMapping("/profile")
-    public User getProfile(Authentication authentication) {
+    public UserProfileResponse getProfile(
+            Authentication authentication
+    ){
 
-        String email = authentication.getName();
-
-        return userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+        return userProfileService.getProfile(
+                authentication.getName()
+        );
     }
+
+
+
+    @PutMapping("/profile")
+    public UserProfileResponse updateProfile(
+
+            Authentication authentication,
+
+            @RequestBody UpdateProfileRequest request
+
+    ){
+
+        return userProfileService.updateProfile(
+
+                authentication.getName(),
+
+                request
+        );
+    }
+
 }

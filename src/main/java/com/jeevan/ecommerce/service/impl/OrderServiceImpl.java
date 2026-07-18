@@ -139,11 +139,22 @@ public class OrderServiceImpl implements OrderService {
 
     }
     @Override
-    public OrderResponse getOrderById(Long orderId) {
+    public OrderResponse getOrderById(String email,Long orderId) {
 
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Order not found"));
+        User user =
+                userRepository.findByEmail(email)
+                        .orElseThrow(() ->
+                                      new ResourceNotFoundException("User not found"));
+        Order order =
+                orderRepository.findById(orderId)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException("Order not found"));
+
+        if(!order.getUser().getId().equals(user.getId())){
+            throw new RuntimeException(
+                    "You cannot view another user's order"
+            );
+        }
 
         return mapToResponse(order);
 

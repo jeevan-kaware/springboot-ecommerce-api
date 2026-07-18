@@ -18,15 +18,21 @@ public interface CartService {
 
 
     CartResponse updateQuantity(
+
+            String email,
+
             Long cartItemId,
+
             Integer quantity
     );
 
 
     String removeItem(
+
+            String email,
+
             Long cartItemId
     );
-
 
     String clearCart(
             String email
