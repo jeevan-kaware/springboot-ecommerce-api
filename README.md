@@ -682,7 +682,7 @@ The following screenshots demonstrate the core functionality of the application.
 
 ## ☁ Upload Product Image
 
-![Upload](Screenshots/06-upload-image.png)
+![Upload](Screenshots/06-upload-image.png.png)
 ---
 
 ## 🛒 Add Product to Cart
