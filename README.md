@@ -678,7 +678,7 @@ The following screenshots demonstrate the core functionality of the application.
 
 ## ➕ Create Product (Admin)
 
-![Products](Screenshots/04-product-list.png.png)
+![Products](Screenshots/05-create-product.png.png)
 ---
 
 ## ☁ Upload Product Image
