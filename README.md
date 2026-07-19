@@ -2,9 +2,9 @@
 
 <div align="center">
 
-#🛒 Spring Boot E-Commerce API 
+# 🛒 Spring Boot E-Commerce API 
 
-## 📋 Production Ready E-Commerce REST API built with Spring Boot
+### 📋 Production Ready E-Commerce REST API built with Spring Boot
 
 <p align="center">
 
