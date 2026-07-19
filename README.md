@@ -4,9 +4,7 @@
 
 <div align="center">
 
-# 📋 Task Flow API
-
-### Secure Task Management REST API built with Spring Boot
+#🛒 Spring Boot E-Commerce API ## 📋 Production Ready E-Commerce REST API built with Spring Boot
 
 <p align="center">
 
