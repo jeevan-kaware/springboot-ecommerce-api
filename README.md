@@ -720,32 +720,51 @@ The following screenshots demonstrate the core functionality of the application.
 
 The following features are planned for future releases.
 
-- 💳 Payment Gateway Integration (Stripe / Razorpay)
-- 🛒 Checkout Module
-- 🎟 Coupon & Discount System
-- ⭐ Product Ratings & Reviews
-- 📦 Inventory & Stock Management
-- 🔔 Email Notifications
-- 📱 SMS Notifications
-- ❤️ Product Recommendations using AI
-- 🔎 Elasticsearch Product Search
-- ⚡ Redis Caching
-- 📈 Admin Dashboard & Analytics
-- 👥 Multiple Customer Addresses
-- 🚚 Shipment Tracking
-- 📑 Invoice Generation (PDF)
-- 🧾 Order History Reports
-- 🏪 Multi Vendor Marketplace Support
-- 🌍 React Frontend Integration
-- 📱 Mobile Application Backend
-- 🐳 Docker Support
-- ☸ Kubernetes Deployment
-- ⚙ CI/CD Pipeline (GitHub Actions)
-- 🧪 Unit Testing
-- 🔄 Integration Testing
-- 📊 API Monitoring
-- 📝 Audit Logging
-- 🧩 Microservices Migration
+💳 Payment Gateway (Stripe / Razorpay)
+
+⭐ Product Reviews & Ratings
+
+📦 Inventory Management
+
+📱 Mobile App Backend
+
+🌍 React Frontend
+
+📧 Email Notifications
+
+🔔 Push Notifications
+
+🧠 AI Product Recommendations
+
+🛒 Checkout Module
+
+🎟 Coupons & Discounts
+
+📑 PDF Invoice Generation
+
+🚚 Shipment Tracking
+
+🏪 Multi Vendor Marketplace
+
+⚡ Redis Caching
+
+📊 Dashboard Analytics
+
+🐳 Docker
+
+☸ Kubernetes
+
+⚙ GitHub Actions CI/CD
+
+🧪 Unit Testing
+
+🔄 Integration Testing
+
+📈 Monitoring & Logging
+
+🔍 Elasticsearch Search
+
+🧾 Order Reports
 
 ---
 
