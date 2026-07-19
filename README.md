@@ -2,21 +2,35 @@
 
 ## 📋 Production Ready E-Commerce REST API built with Spring Boot
 
+<div align="center">
+
+# 📋 Task Flow API
+
+### Secure Task Management REST API built with Spring Boot
+
 <p align="center">
 
 <img src="https://img.shields.io/badge/Java-21-red?style=for-the-badge&logo=openjdk&logoColor=white"/>
 
 <img src="https://img.shields.io/badge/Spring_Boot-3.5-green?style=for-the-badge&logo=springboot"/>
 
-<img src="https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger"/>
+<img src="https://img.shields.io/badge/Spring_Security-6-green?style=for-the-badge&logo=springsecurity"/>
 
-<img src="https://img.shields.io/badge/REST-API-success?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge"/>
+
+<img src="https://img.shields.io/badge/PostgreSQL-Neon-blue?style=for-the-badge&logo=postgresql"/>
+
+<img src="https://img.shields.io/badge/Railway-Deployed-purple?style=for-the-badge&logo=railway"/>
+
+<img src="https://img.shields.io/badge/Maven-Build-red?style=for-the-badge&logo=apachemaven"/>
 
 <img src="https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger"/>
 
 <img src="https://img.shields.io/badge/REST-API-success?style=for-the-badge"/>
 
 </p>
+
+</div>
 
 ---
 
