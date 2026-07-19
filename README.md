@@ -1,10 +1,10 @@
 # 🛒 Spring Boot E-Commerce API
 
-## 📋 Production Ready E-Commerce REST API built with Spring Boot
-
 <div align="center">
 
-#🛒 Spring Boot E-Commerce API ## 📋 Production Ready E-Commerce REST API built with Spring Boot
+#🛒 Spring Boot E-Commerce API 
+
+## 📋 Production Ready E-Commerce REST API built with Spring Boot
 
 <p align="center">
 
