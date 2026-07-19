@@ -678,12 +678,12 @@ The following screenshots demonstrate the core functionality of the application.
 
 ## ➕ Create Product (Admin)
 
-![Products](Screenshots/05-create-product.png.png)
+![Products](Screenshots/05-create-product.png)
 ---
 
 ## ☁ Upload Product Image
 
-![Upload](Screenshots/06-upload-image.png.png)
+![Upload](Screenshots/06-upload-image.png)
 ---
 
 ## 🛒 Add Product to Cart
