@@ -670,15 +670,14 @@ The following screenshots demonstrate the core functionality of the application.
 
 ![Login](Screenshots/03-login-api.png.png)
 ---
+## ➕ Create Product (Admin)
+
+![Products](Screenshots/05-create-product.png)
+---
 
 ## 🛍 Product Listing
 
 ![Products](Screenshots/04-product-list.png.png)
----
-
-## ➕ Create Product (Admin)
-
-![Products](Screenshots/05-create-product.png)
 ---
 
 ## ☁ Upload Product Image
