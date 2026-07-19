@@ -38,15 +38,14 @@
 
 # 📖 Overview
 
-Spring Boot E-Commerce API is a production-ready backend application built using **Java 21** and **Spring Boot** that provides secure REST APIs for an online shopping platform.
+Spring Boot E-Commerce API is a production-ready backend application built using **Java 21** and **Spring Boot**.
 
-The project follows a clean layered architecture with secure authentication using **JWT Access Token + Refresh Token**, Role-Based Authorization using **Spring Security**, AI-powered product assistance using **Spring AI**, and image management through **Cloudinary**.
+It provides secure REST APIs for an online shopping platform with **JWT Authentication**, **Refresh Token**, **Spring Security**, **Spring AI**, **Cloudinary Image Upload**, **Role-Based Authorization**, and **PostgreSQL**.
 
-The application allows customers to browse products, manage their shopping cart, place orders, maintain wishlists, update profiles, and interact with an AI shopping assistant. Administrators can manage products, categories, users, and customer orders through dedicated administrative APIs.
+Customers can browse products, manage carts, maintain wishlists, place orders, update profiles, and interact with an AI shopping assistant, while administrators can manage products, categories, users, and customer orders.
 
-This project is designed using a backend-first architecture. A modern frontend such as React or Angular can be integrated in the future to transform it into a complete production-ready Full Stack E-Commerce Platform.
+The project follows a clean layered architecture and is deployed on **Railway** with **Swagger OpenAPI** for API documentation.
 
-The application is deployed on **Railway** and uses **PostgreSQL** as the primary database.
 
 ---
 
