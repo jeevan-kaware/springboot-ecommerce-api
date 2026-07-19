@@ -658,74 +658,62 @@ The following screenshots demonstrate the core functionality of the application.
 
 ## 📚 Swagger UI
 
-![Swagger UI](screenshots/01-swagger-ui.png)
-
+![Swagger](Screenshots/01-swagger-home.png.png)
 ---
 
 ## 👤 User Registration
 
-![Register](screenshots/02-register-api.png)
-
+![Register](Screenshots/02-register-api.png)
 ---
 
 ## 🔐 User Login
 
-![Login](screenshots/03-login-api.png)
-
+![Login](Screenshots/03-login-api.png.png)
 ---
 
 ## 🛍 Product Listing
 
-![Products](screenshots/04-product-list.png)
-
+![Products](Screenshots/04-product-list.png.png)
 ---
 
 ## ➕ Create Product (Admin)
 
-![Create Product](screenshots/05-create-product.png)
-
+![Products](Screenshots/04-product-list.png.png)
 ---
 
 ## ☁ Upload Product Image
 
-![Upload Image](screenshots/06-upload-image.png)
-
+![Upload](Screenshots/06-upload-image.png.png)
 ---
 
 ## 🛒 Add Product to Cart
 
-![Cart](screenshots/07-add-cart.png)
-
+![Cart](Screenshots/07-add-cart.png)
 ---
 
 ## 🛍 View Shopping Cart
 
-![View Cart](screenshots/08-view-cart.png)
-
+![View Cart](Screenshots/08-view-cart.png)
 ---
 
 ## 📦 Place Order
 
-![Place Order](screenshots/09-place-order.png)
-
+![Order](Screenshots/09-place-order.png)
 ---
 
 ## 👑 Update Order Status
 
-![Order Status](screenshots/10-admin-order-status.png)
-
+![Admin Order](Screenshots/10-admin-order-status.png)
 ---
 
 ## 🤖 AI Shopping Assistant
 
-![Spring AI](screenshots/11-ai-chat.png)
-
+![AI](Screenshots/11-ai-chat.png)
 ---
 
 ## 👤 User Profile
 
-![Profile](screenshots/12-user-profile.png)
-
+![Profile](Screenshots/12-user-profile.png.png)
 ---
 
 # 🚀 Future Improvements
