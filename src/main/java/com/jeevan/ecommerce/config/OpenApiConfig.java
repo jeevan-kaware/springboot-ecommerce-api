@@ -24,7 +24,7 @@ public class OpenApiConfig {
 
                 .servers(List.of(
                         new Server()
-                                .url("springboot-ecommerce-api-production-0832.up.railway.app")
+                                .url("https://springboot-ecommerce-api-production-0832.up.railway.app")
                 ))
                 .info(new Info()
                         .title("springboot ecommerce api")
