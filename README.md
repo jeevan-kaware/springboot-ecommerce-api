@@ -32,15 +32,11 @@
 
 ---
 
-
-
----
-
 # 📖 Overview
 
 Spring Boot E-Commerce API is a production-ready backend application built using **Java 21** and **Spring Boot**.
 
-It provides secure REST APIs for an online shopping platform with **JWT Authentication**, **Refresh Token**, **Spring Security**, **Spring AI**, **Cloudinary Image Upload**, **Role-Based Authorization**, and **PostgreSQL**.
+It provides secure REST APIs for a modern online shopping platform using JWT Authentication, Refresh Token Authentication, Spring Security, Spring AI, Cloudinary Image Storage, Role-Based Authorization, and PostgreSQL.
 
 Customers can browse products, manage carts, maintain wishlists, place orders, update profiles, and interact with an AI shopping assistant, while administrators can manage products, categories, users, and customer orders.
 
