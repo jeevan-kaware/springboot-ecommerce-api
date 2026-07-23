@@ -806,7 +806,7 @@ https://www.linkedin.com/in/jeevan-kaware-080643355
 
 ### 🌍 Portfolio
 
-Coming Soon...
+https://smart-portfolio-kappa-eight.vercel.app/
 
 ---
 
